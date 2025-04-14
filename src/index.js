@@ -15,7 +15,7 @@ let playersChanged = false;
 let onlinePlayers = [];
 
 client.once('ready', () => {
-    console.log('Beep boop! I am ready!');
+    console.log('Beep boop! I am ready! ', interval);
     // Check every minute to see if anyone is online
     update();
     setInterval(() => {
@@ -34,7 +34,7 @@ async function update() {
     } catch(error) {
         if(!serverDown) {
             serverDown = true;
-            sendMessage('🧨💥 The server has crashed...');
+            // sendMessage('🧨💥 The server has crashed...');
             console.log( date, ':: Server is offline');
         }
         return;
@@ -43,7 +43,7 @@ async function update() {
     // If the server was down before, but is now back online, send a message!
     if(serverDown) {
         serverDown = false;
-        sendMessage('😁 the server is back online!');
+        // sendMessage('😁 the server is back online!');
     }
 
     // If no players are online, and no players were online on last check,
@@ -102,7 +102,7 @@ function removePlayer(player) {
 
 // Sends a message to channel specified in process.env.DISCORD_CHANNEL_NAME
 async function sendMessage(message) {
-    await client.channels.fetch('739174083228598343').then((channel) => {
+    await client.channels.fetch(process.env.DISCORD_CHANNEL_NAME).then((channel) => {
         const date = new Date( Date.now());
         
         channel.send(message);
