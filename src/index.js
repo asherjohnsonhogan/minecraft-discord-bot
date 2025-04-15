@@ -171,7 +171,8 @@ function arrayEquals(a, b) {
 
 function isNight() {
     const date = new Date(Date.now());
-    return date.getHours() < 5 || date.getHours() >= 22;
+    const hoursPDT = (date.getHours() + 24 - 7) % 24; 
+    return hoursPDT < 5 || hoursPDT >= 22;
 }
 
 function joinNames(players) {
