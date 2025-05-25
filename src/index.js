@@ -179,7 +179,7 @@ function joinNames(players) {
     if (players.length === 1) {
         return players[0]
     } else  {
-        const copy = [...playersAdded];
+        const copy = [...players];
         copy[copy.length - 1] = `and ${copy[copy.length - 1]}`
         return copy.join(players.length === 2 ? " " : ", ")
     }
